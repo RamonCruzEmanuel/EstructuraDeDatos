@@ -1,99 +1,60 @@
-
-package Busqueda;
-
-import java.util.Arrays;
-import java.util.Random;
-
 public class BusquedaBinaria {
 
-    public static int[] numerosAleatorios() {
-
-        Random random = new Random();
-        int[] numerosAleatorios = new int[1000];
-
-        for (int i = 0; i < 1000; i++) {
-            numerosAleatorios[i] = random.nextInt();
+    public static int[] generarNumerosAleatorios(int contador) {
+        int[] numeros = new int[contador];
+        for (int i = 0; i < contador; i++) {
+            numeros[i] = (int) (Math.random() * 10000);
         }
-
-        for(int i = 0; i <= 1000; i++){
-            
-            
-        }
-        return numerosAleatorios;
+        return numeros;
     }
 
-    public static int[] ordenarNumeros(int arr[]) {
-
-        return ordenarNumeros(arr, 0, arr.length - 1);
-    }
-
-    private static int[] ordenarNumeros(int arr[], int primero, int ultimo) {
-
-        int i, j, central;
-        double pivote;
-        central = (primero + ultimo) / 2;
-        pivote = arr[central];
-        i = primero;
-        j = ultimo;
-
-        do {
-            while (arr[i] < pivote) {
-                i++;
-            }
-            while (arr[j] > pivote) {
-                j--;
-            }
-            if (i <= j) {
-
-                int aux = arr[i];
-                arr[i] = arr[j];
-                arr[j] = aux;
-
-                i++;
-                j--;
-            }
-            
-        } while (i <= j);
-
-        if (primero < j) {
-
-            ordenarNumeros(arr, primero, j);
-        }
-
-        if (i < ultimo) {
-
-            ordenarNumeros(arr, i, ultimo);
-        }
-        return arr;
-    }
-
-    public int busquedaBinaria(int elementos[], int x) {
-        
-        int l = 0;
-        int r = elementos.length - 1;
-
-        while (l <= r) {
-            int m = l + (r - l) / 2;
-
-            if (elementos[m] == x) {
-                return m;
-            }
-
-            if (elementos[m] < x) {
-                l = m + 1;
-            } else {
-                r = m - 1;
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
             }
         }
-        return -1;
     }
     
-    public static void main(String args[]) {
-
-        numerosAleatorios();
-        ordenarNumeros(numerosAleatorios());
+     public static void main(String[] args) {
         
-        
+        int[] numerosAleatorios = generarNumerosAleatorios(1000);
+        bubbleSort(numerosAleatorios);
 
+        System.out.println("Numeros aleatorios ordenados:");
+        for (int numero : numerosAleatorios) {
+            System.out.println(numero);
+        }
+
+        int busqueda = 7283;
+        int primero = 0;
+        int ultimo = numerosAleatorios.length - 1;
+        int mitad;
+
+        while (primero <= ultimo) {
+            mitad = (primero + ultimo) / 2;
+
+            if (numerosAleatorios[mitad] == busqueda) {
+                System.out.println("Numero: " + busqueda + " " + "Posicion " + mitad);
+                break;
+            }
+
+            if (numerosAleatorios[mitad] < busqueda) {
+                primero = mitad + 1;
+            } else {
+                ultimo = mitad - 1;
+            }
+        }
+
+        if (primero > ultimo) {
+            
+            System.out.println("Numero: " + busqueda + " " + "Posicion: No se encontro en la lista");
+        }
     }
 }
+
