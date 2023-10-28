@@ -53,9 +53,9 @@ public class BusquedaBinaria {
         
         return arr;
     }
-
-    public static void main(String[] args) {
-
+    
+    public static void busquedaBinaria(){
+        
         int[] numerosAleatorios = generarNumerosAleatorios(1000);
 
         System.out.println("Numeros desordenados:");
@@ -71,5 +71,35 @@ public class BusquedaBinaria {
         for (int i = 0; i < numerosOrdenados.length; i++) {
             System.out.println(numerosOrdenados[i]);
         }
+        
+        int busqueda = 9999;
+        int primero = 0;
+        int ultimo = numerosAleatorios.length - 1;
+        int mitad;
+
+        while (primero <= ultimo) {
+            mitad = (primero + ultimo) / 2;
+
+            if (numerosAleatorios[mitad] == busqueda) {
+                System.out.println("Numero: " + busqueda + " " + "Posicion :" + mitad);
+                break;
+            }
+
+            if (numerosAleatorios[mitad] < busqueda) {
+                primero = mitad + 1;
+            } else {
+                ultimo = mitad - 1;
+            }
+        }
+
+        if (primero > ultimo) {
+            
+            System.out.println("Numero: " + busqueda + " " + "Posicion: No se encontro en la lista");
+        }
+    }   
+
+    public static void main(String[] args) {
+
+        busquedaBinaria();
     }
 }
