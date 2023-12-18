@@ -19,7 +19,7 @@ public class Main {
             nodosArbol[i] = new NodoArbol<Character>(nodos[i]);
         }
         
-        System.out.println("**************************Arbol General**************************");
+        System.out.println("--------------Arbol General--------------");
         arbolGeneral.agregarNodoArbol(arbolGeneral.obtenerRaiz(), nodosArbol[0]);
         arbolGeneral.agregarNodoArbol(nodosArbol[0], nodosArbol[3]);
         arbolGeneral.agregarNodoArbol(nodosArbol[0], nodosArbol[4]);
@@ -50,7 +50,7 @@ public class Main {
         arbolGeneral.imprimirSubArbol(nodosArbol[2]);
 
         System.out.println();
-        System.out.println("**************************Arbol binario**************************");
+        System.out.println("--------------Arbol binario--------------");
         char raizBinario = 'A';
         Arbol<Character> arbolBinario = new Arbol<>(raizBinario, true);
         NodoArbol<Character>[] nodosArbolBinario = new NodoArbol[17];
